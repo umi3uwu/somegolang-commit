@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 	"sync"
 )
@@ -61,13 +60,4 @@ func deleteHandler(w http.ResponseWriter, r *http.Request) {
 	defer mu.Unlock()
 	delete(users, "1")
 	w.WriteHeader(http.StatusOK)
-}
-
-func main() {
-	http.HandleFunc("/post", postHandler)
-	http.HandleFunc("/get", getHandler)
-	http.HandleFunc("/delete", deleteHandler)
-	log.Println("Starting server on port 8080...")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-	}
 }
